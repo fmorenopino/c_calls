@@ -77,3 +77,6 @@ Values of 100 and 11 are the payload type values to be carried in the correspond
 In order to configure the format of soundcard playing and recording, by means of the SNDCTL_DSP_SETFMT command with the ioctl call), you should use format value 8 for L8, and format value 16 for L16. (Note that the format value refers to the value used to configure the soundcard).
 first learns the payload, and therefore the audio format to be used in the communication, when it receives the first audio packet from second, by reading it from the RTP header.
 
+### Notes:
+
+The main logic of this code can be found in the file "conf.c"
