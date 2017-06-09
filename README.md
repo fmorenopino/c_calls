@@ -6,15 +6,15 @@ between two systems (called conf entities). In this implementation, we use RTP o
 
 The application could be started in two ways: In first mode, where the process waits indefinitely for the other conf entity (second) to send data. In second mode, conf initiates communication by sending immediately an audio packet to first.
 
-##Command line interface
+## Command line interface
 
 conf first [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-kACCUMULATED_TIME] [-mMULTICAST_ADDR]
 
 conf second addressOfFirst [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-lPACKET_DURATION] [-kACCUMULATED_TIME] [-yPAYLOAD]
 
-###Flags:
+### Flags:
 
-####Verbose mode, -c
+#### Verbose mode, -c
 This parameter exists for both first and second.
 With –c (verbose mode), a dot (“.”) shall be printed each time a packet is sent and a “+” each time a packet is inserted in the circular buffer to be played. Besides (each of these cases is explained below in the specification),
 
@@ -34,23 +34,23 @@ s indicates there are missing packets before number 14 was received; x stands fo
 When the execution in verbose mode finishes, it must show the theoretical time required to playout the content, as well as the actual time required to perform the playout: time elapsed since the playout of the first packet to the playout of the last one (or a good approximation possible to that time); the comparison between the theoretical and actual playout times can be used to evaluate the quality of an implementation.
 -c can be independently activated in first or second.
 
-####Local RTP port, -p
+#### Local RTP port, -p
 This parameter exists for both first and second.
 The ports to use can be configured using –p, with a default value of 5004.
 Port numbers must be the same for both first and second modes.
 
-####Volume, -v
+#### Volume, -v
 This parameter exists for both first and second.
 It allows setting the local volume for both recording and playout, which can have different values at first and at second.
 
-####Accumulated time, -k
+#### Accumulated time, -k
 This parameter exists for both first and second.
 –kACCUMULATED_TIME is used to indicate that ACCUMULATED_TIME milliseconds of data must be stored in the circular buffer before starting the playout. This time is internally rounded down by conf to a multiple of the actual playout time of a packet, so that an integer number of packets are buffered. For example, if –k90 is specified, and a packet has an actual duration of 16.00 ms, the accumulated data will correspond to 80 ms (5 16-ms packets).
 100 ms is the default value for this parameter.
 Note that when allocating memory, the circular buffer must be sized to store 200 milliseconds in addition to the buffering time specified in this command, to cope with possible delay variations caused by the network. For example, for –k50, the buffer will be sized to be able to store the data corresponding to 250 ms of playout (rounded down to the multiple of the actual playout time of a packet).
 -k may have different values for first and second.
 
-####Multicast operation
+#### Multicast operation
 The application running as first must be able to use a multicast address to receive the data, as an alternative to receiving it from its unicast address. This is achieved by means of the –mMulticastAddr optional parameter for first mode (for example, -m226.0.0.100), and the addressOfFirst for second mode configured to the same multicast address. In the following example, first listens at multicast address 226.0.0.100 (using –m), which is the same address to which second sends its data.
 
 Host1:~> ./conf first -m 226.0.0.100
@@ -64,12 +64,12 @@ If –m is not used, then second is started with the IP unicast address of first
 Host1:~> ./conf first
 Host2:~> ./conf second 168.117.144.7
 
-####Packet duration, -l
+#### Packet duration, -l
 This parameter is only available with second.
 The option –l allows specifying the duration in milliseconds of the play-out of the data being carried by a packet. By default, this value is 20 ms.
 The value of –l is just a hint, since the actual length used by first for the audio blocks will be rounded down to the immediately inferior power of 2 number of bytes, to comply with the fragment size restrictions imposed by the soundcard operation.first learns the audio block length when it receives the first audio packet from second, by processing the byte length of the UDP packet received (recvfrom system call).
 
-####Payload, -y
+#### Payload, -y
 This parameter is only available with second.
 Two values are allowed: -y100 indicates L8 format, and –y11 indicates L16 format. The default value is L8.
 L8 refers to a linear coding of 8 bit per sample, single channel, sampling frequency of 8000 Hz; L16 to linear coding of 16 bit per sample, single channel at 44100 Hz. They are partially defined in RTP profiles for audio and video (RFC3551), sections 4.5.10, 4.5.11 y 6.
