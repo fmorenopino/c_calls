@@ -6,7 +6,11 @@ between two systems (called conf entities). In this implementation, we use RTP o
 
 The application could be started in two ways: In first mode, where the process waits indefinitely for the other conf entity (second) to send data. In second mode, conf initiates communication by sending immediately an audio packet to first.
 
-## Command line interface
+## Compile:
+
+gcc -o exec_conf conf.c confArgs.c configureSndcard.c circularBuffer.c
+
+## Command line interface:
 
 conf first [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-kACCUMULATED_TIME] [-mMULTICAST_ADDR]
 
