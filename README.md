@@ -57,16 +57,16 @@ Note that when allocating memory, the circular buffer must be sized to store 200
 #### Multicast operation
 The application running as first must be able to use a multicast address to receive the data, as an alternative to receiving it from its unicast address. This is achieved by means of the –mMulticastAddr optional parameter for first mode (for example, -m226.0.0.100), and the addressOfFirst for second mode configured to the same multicast address. In the following example, first listens at multicast address 226.0.0.100 (using –m), which is the same address to which second sends its data.
 
-Host1:~> ./conf first -m 226.0.0.100
-Host2:~> ./conf second 226.0.0.100
+Host1: ~> ./conf first -m 226.0.0.100
+Host2: ~> ./conf second 226.0.0.100
 
 Remember, that the range of valid multicast addresses is 224.0.0.0 to 239.255.255.255 (we recommend you to use an address in the range 226.0.x.x). You can verify if the association is correct by executing a ping to the address.
 -m can only be used with first.
 If –m is not used, then second is started with the IP unicast address of first, as in the following example.
 
 
-Host1:~> ./conf first
-Host2:~> ./conf second 168.117.144.7
+Host1: ~> ./conf first
+Host2: ~> ./conf second 168.117.144.7
 
 #### Packet duration, -l
 This parameter is only available with second.
