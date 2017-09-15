@@ -12,9 +12,9 @@ gcc -o exec_conf conf.c confArgs.c configureSndcard.c circularBuffer.c
 
 ## Command line interface:
 
-conf first [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-kACCUMULATED_TIME] [-mMULTICAST_ADDR]
+exec_conf first [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-kACCUMULATED_TIME] [-mMULTICAST_ADDR]
 
-conf second addressOfFirst [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-lPACKET_DURATION] [-kACCUMULATED_TIME] [-yPAYLOAD]
+exec_conf second addressOfFirst [-pLOCAL_RTP_PORT] [-vVOL] [-c] [-lPACKET_DURATION] [-kACCUMULATED_TIME] [-yPAYLOAD]
 
 ### Flags:
 
