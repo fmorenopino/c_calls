@@ -4,7 +4,7 @@
 This project, developed with C, allows us to establish a point-to-point audio conference 
 between two systems (called conf entities). In this implementation, we use RTP over UDP.
 
-The application could be started in two ways: In first mode, where the process waits indefinitely for the other conf entity (second) to send data. In second mode, conf initiates communication by sending immediately an audio packet to first.
+The application could be started in two ways: In first mode, where the process waits indefinitely for the other conf entity ("second") to send data. In second mode, conf initiates communication by sending immediately an audio packet to "first".
 
 ## Compile:
 
